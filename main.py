@@ -20,7 +20,7 @@ class Stars:
 		self.z = random()*WIDTH
 
 	def update(self):
-		self.z -= 5
+		self.z -= 10
 		if self.z < 1:
 			self.z = WIDTH
 			self.x = (random()*2-1)*WIDTH/2
@@ -31,8 +31,9 @@ class Stars:
 		py = self.y/self.z * HEIGHT
 		px += WIDTH/2
 		py += HEIGHT/2
+		r = 5 - self.z/WIDTH * 5
 
-		circle(SCREEN,(255,255,255),(px,py),4)
+		circle(SCREEN,(255,255,255),(px,py),r)
 
 
 if __name__ == "__main__":
