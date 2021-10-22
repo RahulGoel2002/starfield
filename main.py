@@ -4,11 +4,11 @@ from pygame import init,quit,QUIT
 from pygame.display import set_mode,flip
 from pygame.event import get
 from pygame.time import Clock
-from pygame.draw import circle
+from pygame.draw import circle,line
 from random import random
 
 # Globals
-WIDTH,HEIGHT = 600,400
+WIDTH,HEIGHT = 1050,700
 SCREEN = set_mode((WIDTH,HEIGHT))
 FPSClock = Clock()
 FPS = 32
@@ -34,16 +34,18 @@ class Stars:
 		r = 5 - self.z/WIDTH * 5
 
 		circle(SCREEN,(255,255,255),(px,py),r)
-
+		
 
 if __name__ == "__main__":
 	init()
-	stars = [None for _ in range(400)]
+	stars = [None for _ in range(1000)]
 	for i in range(len(stars)):
 		stars[i] = Stars()	
+	# r = 1
 
 	while True:
 		SCREEN.fill((0,0,0))
+
 		for event in get():
 			if event.type == QUIT:
 				quit()
@@ -51,5 +53,7 @@ if __name__ == "__main__":
 		for star in stars:
 			star.update()
 			star.show()
+		# circle(SCREEN,(255,45,0),(WIDTH/2,HEIGHT/2),r)
+		# r += 0.01
 		flip()
 		FPSClock.tick(FPS)
