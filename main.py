@@ -17,14 +17,18 @@ class Stars:
 	def __init__(self):
 		self.x = (random()*2-1)*WIDTH/2
 		self.y = (random()*2-1)*HEIGHT/2
-		self.z = WIDTH
+		self.z = random()*WIDTH
 
 	def update(self):
-		self.z -= 1
+		self.z -= 5
+		if self.z < 1:
+			self.z = WIDTH
+			self.x = (random()*2-1)*WIDTH/2
+			self.y = (random()*2-1)*HEIGHT/2
 
 	def show(self):
-		px = x/z * WIDTH
-		py = y/z * HEIGHT
+		px = self.x/self.z * WIDTH
+		py = self.y/self.z * HEIGHT
 		px += WIDTH/2
 		py += HEIGHT/2
 
@@ -33,7 +37,7 @@ class Stars:
 
 if __name__ == "__main__":
 	init()
-	stars = [None for _ in range(100)]
+	stars = [None for _ in range(400)]
 	for i in range(len(stars)):
 		stars[i] = Stars()	
 
@@ -44,6 +48,7 @@ if __name__ == "__main__":
 				quit()
 				exit()
 		for star in stars:
+			star.update()
 			star.show()
 		flip()
 		FPSClock.tick(FPS)
